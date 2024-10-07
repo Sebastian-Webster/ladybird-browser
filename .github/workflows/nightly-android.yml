@@ -4,6 +4,9 @@ on:
   # Automatically run at the end of every day.
   schedule:
     - cron: '0 0 * * *'
+  push:
+  pull_request:
+  workflow_dispatch:
 
 env:
   # runner.workspace = /home/runner/work/ladybird
@@ -13,14 +16,9 @@ env:
   VCPKG_ROOT:  ${{ github.workspace }}/Toolchain/Tarballs/vcpkg
   VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || format('{0}-{1}', github.ref, github.run_number) }}
-  cancel-in-progress: true
-
 jobs:
   CI:
     runs-on: ${{ matrix.os }}
-    if: always() && github.repository == 'LadybirdBrowser/ladybird' && github.ref == 'refs/heads/master'
     strategy:
       fail-fast: false
       matrix:
