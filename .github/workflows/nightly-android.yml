@@ -81,7 +81,7 @@ jobs:
           echo "Starting emulator"
 
           # Start emulator in background
-          ${ANDROID_HOME}/emulator/emulator -avd xamarin_android_emulator -no-snapshot -memory 1536 2>&1
+          ${ANDROID_HOME}/emulator/emulator -avd xamarin_android_emulator -no-snapshot -memory 768 2>&1
           echo 1
           ${ANDROID_HOME}/platform-tools/adb wait-for-device
           echo 2
