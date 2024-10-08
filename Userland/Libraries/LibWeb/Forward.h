@@ -307,6 +307,10 @@ namespace Web::EntriesAPI {
 class FileSystemEntry;
 }
 
+namespace Web::EventTiming {
+class PerformanceEventTiming;
+}
+
 namespace Web::Fetch {
 class BodyMixin;
 class Headers;
@@ -722,10 +726,13 @@ class SVGTitleElement;
 }
 
 namespace Web::UIEvents {
+class CompositionEvent;
+class InputEvent;
 class KeyboardEvent;
 class MouseEvent;
 class PointerEvent;
-class UIEvents;
+class TextEvent;
+class UIEvent;
 }
 
 namespace Web::DOMURL {

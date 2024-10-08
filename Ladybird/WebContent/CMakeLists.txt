@@ -45,13 +45,10 @@ if (ENABLE_QT)
     qt_add_executable(WebContent
         ../Qt/EventLoopImplementationQt.cpp
         ../Qt/EventLoopImplementationQtEventTarget.cpp
-        ../Qt/RequestManagerQt.cpp
         ../Qt/StringUtils.cpp
-        ../Qt/WebSocketQt.cpp
-        ../Qt/WebSocketImplQt.cpp
         main.cpp
     )
-    target_link_libraries(WebContent PRIVATE Qt::Core Qt::Network)
+    target_link_libraries(WebContent PRIVATE Qt::Core)
     target_compile_definitions(WebContent PRIVATE HAVE_QT=1)
 
     if (NOT HAVE_PULSEAUDIO)

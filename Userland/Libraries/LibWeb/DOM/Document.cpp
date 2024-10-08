@@ -128,10 +128,12 @@
 #include <LibWeb/SVG/SVGStyleElement.h>
 #include <LibWeb/SVG/SVGTitleElement.h>
 #include <LibWeb/Selection/Selection.h>
+#include <LibWeb/UIEvents/CompositionEvent.h>
 #include <LibWeb/UIEvents/EventNames.h>
 #include <LibWeb/UIEvents/FocusEvent.h>
 #include <LibWeb/UIEvents/KeyboardEvent.h>
 #include <LibWeb/UIEvents/MouseEvent.h>
+#include <LibWeb/UIEvents/TextEvent.h>
 #include <LibWeb/WebIDL/AbstractOperations.h>
 #include <LibWeb/WebIDL/DOMException.h>
 #include <LibWeb/WebIDL/ExceptionOr.h>
@@ -704,6 +706,9 @@ WebIDL::ExceptionOr<void> Document::close()
 
     // FIXME: 6. Run the tokenizer, processing resulting tokens as they are emitted, and stopping when the tokenizer reaches the explicit "EOF" character or spins the event loop.
     m_parser->run();
+
+    // AD-HOC: This ensures that a load event is fired if the node navigable's container is an iframe.
+    completely_finish_loading();
 
     return {};
 }
@@ -1750,7 +1755,7 @@ WebIDL::ExceptionOr<JS::NonnullGCPtr<Event>> Document::create_event(StringView i
     if (Infra::is_ascii_case_insensitive_match(interface, "beforeunloadevent"sv)) {
         event = BeforeUnloadEvent::create(realm, FlyString {});
     } else if (Infra::is_ascii_case_insensitive_match(interface, "compositionevent"sv)) {
-        event = Event::create(realm, FlyString {}); // FIXME: Create CompositionEvent
+        event = UIEvents::CompositionEvent::create(realm, String {});
     } else if (Infra::is_ascii_case_insensitive_match(interface, "customevent"sv)) {
         event = CustomEvent::create(realm, FlyString {});
     } else if (Infra::is_ascii_case_insensitive_match(interface, "devicemotionevent"sv)) {
@@ -1780,7 +1785,7 @@ WebIDL::ExceptionOr<JS::NonnullGCPtr<Event>> Document::create_event(StringView i
     } else if (Infra::is_ascii_case_insensitive_match(interface, "svgevents"sv)) {
         event = Event::create(realm, FlyString {});
     } else if (Infra::is_ascii_case_insensitive_match(interface, "textevent"sv)) {
-        event = Event::create(realm, FlyString {}); // FIXME: Create CompositionEvent
+        event = UIEvents::TextEvent::create(realm, FlyString {});
     } else if (Infra::is_ascii_case_insensitive_match(interface, "touchevent"sv)) {
         event = Event::create(realm, FlyString {}); // FIXME: Create TouchEvent
     } else if (Infra::is_ascii_case_insensitive_match(interface, "uievent"sv)
@@ -5659,6 +5664,26 @@ Document::StepsToFireBeforeunloadResult Document::steps_to_fire_beforeunload(boo
 
     // 8. Return (unloadPromptShown, unloadPromptCanceled).
     return { unload_prompt_shown, unload_prompt_canceled };
+}
+
+WebIDL::CallbackType* Document::onreadystatechange()
+{
+    return event_handler_attribute(HTML::EventNames::readystatechange);
+}
+
+void Document::set_onreadystatechange(WebIDL::CallbackType* value)
+{
+    set_event_handler_attribute(HTML::EventNames::readystatechange, value);
+}
+
+WebIDL::CallbackType* Document::onvisibilitychange()
+{
+    return event_handler_attribute(HTML::EventNames::visibilitychange);
+}
+
+void Document::set_onvisibilitychange(WebIDL::CallbackType* value)
+{
+    set_event_handler_attribute(HTML::EventNames::visibilitychange, value);
 }
 
 }

@@ -58,6 +58,7 @@ ClipboardEvent
 CloseEvent
 CloseWatcher
 Comment
+CompositionEvent
 CountQueuingStrategy
 Crypto
 CryptoKey
@@ -197,6 +198,7 @@ IdleDeadline
 Image
 ImageBitmap
 ImageData
+InputEvent
 Int16Array
 Int32Array
 Int8Array
@@ -243,6 +245,7 @@ PageTransitionEvent
 Path2D
 Performance
 PerformanceEntry
+PerformanceEventTiming
 PerformanceMark
 PerformanceMeasure
 PerformanceNavigation
@@ -343,6 +346,7 @@ SyntaxError
 Text
 TextDecoder
 TextEncoder
+TextEvent
 TextMetrics
 TextTrack
 TextTrackCue

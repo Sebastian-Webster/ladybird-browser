@@ -219,6 +219,7 @@ set(SOURCES
     Encoding/TextDecoder.cpp
     Encoding/TextEncoder.cpp
     EntriesAPI/FileSystemEntry.cpp
+    EventTiming/PerformanceEventTiming.cpp
     Fetch/Body.cpp
     Fetch/BodyInit.cpp
     Fetch/Enums.cpp
@@ -704,11 +705,14 @@ set(SOURCES
     SVG/TagNames.cpp
     SVG/ViewBox.cpp
     Selection/Selection.cpp
+    UIEvents/CompositionEvent.cpp
     UIEvents/EventNames.cpp
     UIEvents/FocusEvent.cpp
+    UIEvents/InputEvent.cpp
     UIEvents/KeyboardEvent.cpp
     UIEvents/MouseEvent.cpp
     UIEvents/PointerEvent.cpp
+    UIEvents/TextEvent.cpp
     UIEvents/UIEvent.cpp
     UIEvents/WheelEvent.cpp
     UserTiming/PerformanceMark.cpp

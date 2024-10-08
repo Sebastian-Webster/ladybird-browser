@@ -731,6 +731,12 @@ public:
     };
     StepsToFireBeforeunloadResult steps_to_fire_beforeunload(bool unload_prompt_shown);
 
+    [[nodiscard]] WebIDL::CallbackType* onreadystatechange();
+    void set_onreadystatechange(WebIDL::CallbackType*);
+
+    [[nodiscard]] WebIDL::CallbackType* onvisibilitychange();
+    void set_onvisibilitychange(WebIDL::CallbackType*);
+
 protected:
     virtual void initialize(JS::Realm&) override;
     virtual void visit_edges(Cell::Visitor&) override;
