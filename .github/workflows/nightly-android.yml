@@ -4,6 +4,9 @@ on:
   # Automatically run at the end of every day.
   schedule:
     - cron: '0 0 * * *'
+  push:
+  pull_request:
+  workflow_dispatch:
 
 env:
   # runner.workspace = /home/runner/work/ladybird
