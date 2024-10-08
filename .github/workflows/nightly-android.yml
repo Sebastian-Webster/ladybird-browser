@@ -28,7 +28,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: rm /usr/local/bin/2to3
+      - name: Delete Python 3
+        working-directory: /usr/local/bin
+        run: |
+          sudo rm -rf /Library/Frameworks/Python.framework
+          ls -l /usr/local/bin | grep '../Library/Frameworks/Python.framework' | awk '{print $9}' | tr -d @ | xargs rm
 
       - name: Set Up Environment
         uses: ./.github/actions/setup
