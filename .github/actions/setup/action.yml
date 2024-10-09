@@ -23,6 +23,7 @@ runs:
       run: pip install pyyaml requests six
 
     - name: Uninstall system Python
+      shell: bash
       run: sudo rm -rf /Library/Frameworks/Python.framework/Versions/3.12
 
     - name: 'Install Dependencies'
