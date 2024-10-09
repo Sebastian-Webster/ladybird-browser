@@ -15,12 +15,15 @@ runs:
   steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: 3.12
+        python-version: 3.13
         cache: 'pip'
 
     - name: 'Install Python dependencies'
       shell: bash
       run: pip install pyyaml requests six
+
+    - name: Uninstall system Python
+      run: sudo rm -rf /Library/Frameworks/Python.framework/Versions/3.12
 
     - name: 'Install Dependencies'
       if: ${{ inputs.os == 'Linux' }}
