@@ -96,6 +96,9 @@ jobs:
           ${ANDROID_HOME}/platform-tools/adb devices
           echo "Emulator started"
 
+      - run: sysctl vm.swapusage
+        if: ${{ always() }}
+
       # === BUILD ===
 
       - name: Build and Test
