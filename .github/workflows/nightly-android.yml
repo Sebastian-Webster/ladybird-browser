@@ -113,6 +113,11 @@ jobs:
         with:
           path: /tmp/logcollection
 
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          path: /tmp/android-runner
+
       # === BUILD ===
 
       - name: Build and Test
