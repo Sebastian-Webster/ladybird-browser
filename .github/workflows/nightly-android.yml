@@ -29,6 +29,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - run: xcrun simctl list
+      - run: xcrun simctl delete unavailable
+      - run: xcrun simctl list
 
       - name: Set Up Environment
         uses: ./.github/actions/setup
