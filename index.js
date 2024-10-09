@@ -2,7 +2,7 @@ const crypto = require('crypto');
 
 const master = []
 
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 10; i++) {
     master.push(crypto.randomBytes(2**31 - 1))
 }
 
