@@ -21,12 +21,10 @@ jobs:
       fail-fast: false
       matrix:
         os_name: ['Android']
-        os: [macos-13]
+        os: [ubuntu-24.04]
 
     steps:
       - uses: actions/checkout@v4
-
-      - run: brew install python@3.12
 
       - name: Set Up Environment
         uses: ./.github/actions/setup
