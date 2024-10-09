@@ -46,7 +46,7 @@ runs:
         echo "${{ github.workspace }}/wabt-1.0.35/bin" >> $GITHUB_PATH
 
     - name: 'Select latest Xcode'
-      if: ${{ inputs.os == 'macOS' || inputs.os == 'Android' }}
+      if: ${{ inputs.os == 'macOS' }}
       uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: latest-stable
@@ -57,6 +57,7 @@ runs:
       run: |
         set -e
         brew update
+        brew install python@3.12 --force
         brew install autoconf autoconf-archive automake bash ccache coreutils ffmpeg llvm@18 nasm ninja qt unzip wabt
 
     - name: 'Install vcpkg'
