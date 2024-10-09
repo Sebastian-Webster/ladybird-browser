@@ -79,8 +79,6 @@ jobs:
 
       - run: nohup ${ANDROID_HOME}/emulator/emulator -accel-check
 
-      - run: sysctl kern.hv_support
-
       - name: Start Android Emulator
         run: |
           # Install AVD files
@@ -121,6 +119,9 @@ jobs:
         with:
           path: /tmp/android-runner
           name: android
+
+      - run: sysctl kern.hv_support
+        if: ${{ always() }}
 
       # === BUILD ===
 
