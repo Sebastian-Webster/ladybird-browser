@@ -65,6 +65,10 @@ jobs:
           yes | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "platform-tools" "build-tools;32.0.0" "platforms;android-30"
           yes | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "ndk;26.1.10909125"
 
+      - name: Install emulator package
+        run: ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager emulator
+
+
       - name: Start Android Emulator
         run: |
           # Install AVD files
