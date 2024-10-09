@@ -26,6 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Uninstall system Python
+        run: sudo rm -rf /Library/Frameworks/Python.framework
+
       - name: Set Up Environment
         uses: ./.github/actions/setup
         with:
