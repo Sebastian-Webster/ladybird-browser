@@ -79,6 +79,8 @@ jobs:
 
       - run: nohup ${ANDROID_HOME}/emulator/emulator -accel-check
 
+      - run: sysctl kern.hv_support
+
       - name: Start Android Emulator
         run: |
           # Install AVD files
