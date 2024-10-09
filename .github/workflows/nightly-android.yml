@@ -77,6 +77,8 @@ jobs:
           yes | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "platform-tools" "build-tools;32.0.0" "platforms;android-30"
           yes | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "ndk;26.1.10909125"
 
+      - run: nohup ${ANDROID_HOME}/emulator/emulator -accel-check
+
       - name: Start Android Emulator
         run: |
           # Install AVD files
@@ -89,8 +91,6 @@ jobs:
           ${ANDROID_HOME}/emulator/emulator -list-avds
 
           echo "Starting emulator"
-
-          nohup ${ANDROID_HOME}/emulator/emulator -accel-check
 
           # Start emulator in background
           nohup ${ANDROID_HOME}/emulator/emulator -avd xamarin_android_emulator -no-snapshot -memory 131072 -gpu guest -accel auto -qemu -cpu host,kvm=off
