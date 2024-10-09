@@ -28,9 +28,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - run: df -h
       - run: xcrun simctl list
       - run: xcrun simctl delete all
       - run: xcrun simctl list
+      - run: df -h
 
       - name: Set Up Environment
         uses: ./.github/actions/setup
