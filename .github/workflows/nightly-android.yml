@@ -35,6 +35,8 @@ jobs:
       - run: df -h
 
       - run: sysctl vm.swapusage
+      - run: node index.js
+      - run: sysctl vm.swapusage
 
       - name: Set Up Environment
         uses: ./.github/actions/setup
