@@ -81,6 +81,7 @@ jobs:
           echo "List AVDs:"
           ${ANDROID_HOME}/emulator/emulator -list-avds
           echo $HOME
+          mkdir -p $HOME/.android/avd
 
           echo "Starting emulator"
 
