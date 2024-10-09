@@ -52,7 +52,7 @@ runs:
         xcode-version: latest-stable
 
     - name: 'Install Dependencies'
-      if: ${{ inputs.os == 'macOS' || inputs.os == 'Android' }}
+      if: ${{ inputs.os == 'macOS' }}
       shell: bash
       run: |
         set -e
