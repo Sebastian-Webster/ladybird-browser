@@ -26,6 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - run: brew install python@3.12
+
       - name: Set Up Environment
         uses: ./.github/actions/setup
         with:
