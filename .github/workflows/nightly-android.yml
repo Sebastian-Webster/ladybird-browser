@@ -102,7 +102,7 @@ jobs:
       - run: mkdir /tmp/logcollection
         if: ${{ always() }}
 
-      - run: log collect
+      - run: sudo log collect
         working-directory: /tmp/logcollection
         if: ${{ always() }}
 
