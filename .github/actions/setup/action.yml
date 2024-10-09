@@ -15,7 +15,7 @@ runs:
   steps:
     - name: Install Python 3.12
       shell: bash
-      run: brew install python@3.12
+      run: brew reinstall python@3.12
 
     - name: 'Install Python dependencies'
       shell: bash
