@@ -78,6 +78,7 @@ jobs:
           echo "no" | ${ANDROID_HOME}/cmdline-tools/latest/bin/avdmanager create avd -n xamarin_android_emulator -k 'system-images;android-30;google_apis;x86_64' --force
 
 
+          echo "List AVDs:"
           ${ANDROID_HOME}/emulator/emulator -list-avds
 
           echo "Starting emulator"
