@@ -13,9 +13,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Install Python 3.12
-      shell: bash
-      run: brew reinstall python@3.12
+    - uses: actions/setup-python@v5
+      with:
+        python-version: 3.13
+        cache: 'pip'
 
     - name: 'Install Python dependencies'
       shell: bash
