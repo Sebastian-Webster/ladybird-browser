@@ -22,10 +22,6 @@ runs:
       shell: bash
       run: pip install pyyaml requests six
 
-    - name: Uninstall system Python
-      shell: bash
-      run: sudo rm -rf /Library/Frameworks/Python.framework/Versions/3.12
-
     - name: 'Install Dependencies'
       if: ${{ inputs.os == 'Linux' }}
       shell: bash
