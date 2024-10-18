@@ -4,6 +4,7 @@ on:
   # Automatically run at the end of every day.
   schedule:
     - cron: '0 0 * * *'
+  push:
 
 env:
   # runner.workspace = /home/runner/work/ladybird
@@ -13,19 +14,14 @@ env:
   VCPKG_ROOT:  ${{ github.workspace }}/Toolchain/Tarballs/vcpkg
   VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || format('{0}-{1}', github.ref, github.run_number) }}
-  cancel-in-progress: true
-
 jobs:
   CI:
     runs-on: ${{ matrix.os }}
-    if: always() && github.repository == 'LadybirdBrowser/ladybird' && github.ref == 'refs/heads/master'
     strategy:
       fail-fast: false
       matrix:
         os_name: ['Android']
-        os: [macos-14]
+        os: [macos-13]
 
     steps:
       - uses: actions/checkout@v4
@@ -83,8 +79,8 @@ jobs:
           echo "Starting emulator"
 
           # Start emulator in background
-          nohup ${ANDROID_HOME}/emulator/emulator -avd xamarin_android_emulator -no-snapshot > /dev/null 2>&1 &
-          ${ANDROID_HOME}/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+          nohup ${ANDROID_HOME}/emulator/emulator -avd xamarin_android_emulator -no-snapshot
+          ${ANDROID_HOME}/platform-tools/adb wait-for-device
           ${ANDROID_HOME}/platform-tools/adb devices
           echo "Emulator started"
 
