@@ -24,5 +24,7 @@ jobs:
         os: [macos-13]
 
     steps:
+      - name: Update Brew
+        run: brew update
       - name: Install Python
         run: brew install python@3.13
