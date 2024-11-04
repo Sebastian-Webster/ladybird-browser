@@ -22,7 +22,7 @@ runs:
       run: pip install pyyaml requests six
 
     - name: 'Install Dependencies'
-      if: ${{ inputs.os == 'Linux' }}
+      if: ${{ inputs.os == 'Linux' || inputs.os == 'Android' }}
       shell: bash
       run: |
         set -e
@@ -46,13 +46,13 @@ runs:
         echo "${{ github.workspace }}/wabt-1.0.35/bin" >> $GITHUB_PATH
 
     - name: 'Select latest Xcode'
-      if: ${{ inputs.os == 'macOS' || inputs.os == 'Android' }}
+      if: ${{ inputs.os == 'macOS' }}
       uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: latest-stable
 
     - name: 'Install Dependencies'
-      if: ${{ inputs.os == 'macOS' || inputs.os == 'Android' }}
+      if: ${{ inputs.os == 'macOS' }}
       shell: bash
       run: |
         set -e
