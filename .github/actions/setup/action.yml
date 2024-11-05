@@ -48,7 +48,7 @@ runs:
     - name: 'Install Android Emulator Dependencies'
       if: ${{ inputs.os == 'Android' }}
       shell: bash
-      run: $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --channel=0 emulator
+      run: ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --channel=0 emulator
 
     - name: 'Select latest Xcode'
       if: ${{ inputs.os == 'macOS' }}
