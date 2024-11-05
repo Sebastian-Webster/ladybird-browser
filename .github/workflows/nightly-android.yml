@@ -76,10 +76,10 @@ jobs:
       - name: Start Android Emulator
         run: |
           # Install AVD files
-          echo "y" | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --install 'system-images;android-30;google_apis;x86_64'
+          echo "y" | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --install 'system-images;android-34;google_apis;x86_64'
 
           # Create emulator
-          echo "no" | ${ANDROID_HOME}/cmdline-tools/latest/bin/avdmanager create avd -n config -k 'system-images;android-30;google_apis;x86_64' -p $HOME/.android/avd --force
+          echo "no" | ${ANDROID_HOME}/cmdline-tools/latest/bin/avdmanager create avd -n config -k 'system-images;android-34;google_apis;x86_64' -p $HOME/.android/avd --force
 
           echo "Listing files in AVD folder"
           ls $HOME/.android/avd
