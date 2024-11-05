@@ -71,7 +71,7 @@ jobs:
           yes | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "ndk;26.1.10909125"
 
       - name: Create AVD folder
-        run: mkdir -p $HOME/.android/avd
+        run: mkdir -p ${{ runner.temp}}/avd
 
       - name: Start Android Emulator
         run: |
@@ -79,10 +79,10 @@ jobs:
           echo "y" | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --install 'system-images;android-34;google_apis;x86_64'
 
           # Create emulator
-          echo "no" | ${ANDROID_HOME}/cmdline-tools/latest/bin/avdmanager create avd -n config -k 'system-images;android-34;google_apis;x86_64' -p $HOME/.android/avd --force
+          echo "no" | ${ANDROID_HOME}/cmdline-tools/latest/bin/avdmanager create avd -n config -k 'system-images;android-34;google_apis;x86_64' -p ${{ runner.temp }}/avd --force
 
           echo "Listing files in AVD folder"
-          ls $HOME/.android/avd
+          ls ${{ runner.temp }}/avd
           echo "Listing AVDs"
           ${ANDROID_HOME}/emulator/emulator -list-avds
 
